@@ -82,7 +82,7 @@ return {
 							end,
 							padding = { right = 1 },
 						},
-						{ "filesize", cond = conditions.buffer_not_empty },
+						-- { "filesize", cond = conditions.buffer_not_empty },
 						{
 							"filename",
 							cond = conditions.buffer_not_empty,
