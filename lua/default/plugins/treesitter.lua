@@ -6,17 +6,61 @@ return {
 		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 		opts = {
 			ensure_installed = {
-				"bash",
 				"c",
+				"cpp",
 				"diff",
+
+				-- 🌍 Web Development
 				"html",
+				"css",
+				"javascript",
+				"typescript",
+				"tsx",
+				"json",
+				"yaml",
+
+				-- 💻 Backend Development
+				"java",
+				"kotlin",
+				"bash",
+				"dockerfile",
+
+				-- ⚡ Frameworks & Tools
+				"gitignore",
+				"gitcommit",
+				"gitattributes",
+
+				-- 🌱 Spring Boot Related
+				"xml",
+				"toml",
+				"yaml",
+				"json",
+
+				-- 🐍 General Purpose Languages
 				"lua",
 				"luadoc",
-				"markdown",
-				"markdown_inline",
-				"query",
 				"vim",
 				"vimdoc",
+				"python",
+				"markdown",
+				"markdown_inline",
+
+				-- 🛢️ Databases
+				"sql",
+				"json",
+				"yaml",
+				"toml",
+
+				-- 📁 Dotfiles & Configs
+				"gitignore",
+				"bash",
+				"make",
+				"ini",
+
+				-- 🔍 Miscellaneous
+				"query",
+				"regex",
+				"comment",
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
