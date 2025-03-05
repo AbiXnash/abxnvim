@@ -16,7 +16,52 @@ return {
 			-- - sd'   - [S]urround [D]elete [']quotes
 			-- - sr)'  - [S]urround [R]eplace [)] [']
 			require("mini.surround").setup()
+			require("mini.starter").setup({
+				evaluate_single = true,
+				header = table.concat({
+					" █████╗   ███████╗    ██╗  ██╗              Z",
+					"██╔══██╗   ██╔══██╗   ╚██╗██╔╝           Z",
+					"███████║   ██████╔╝    ╚███╔╝           z   ",
+					"██╔══██║   ██╔══██╗    ██╔██╗   ╔══╗     z  ",
+					"██║  ██║  ███████╔╝   ██╔╝ ██╗  ║██║ ",
+					"╚═╝  ╚═╝   ╚═════╝    ╚═╝  ╚═╝  ╚══╝",
+				}, "\n"),
+				items = {
+					{ name = "Find file", action = "Telescope find_files", section = "Telescope" },
+					{ name = "New file", action = "ene | startinsert", section = "Built-in" },
+					{ name = "Recent files", action = "Telescope oldfiles", section = "Telescope" },
+					{ name = "Find text", action = "Telescope live_grep", section = "Telescope" },
+					{
+						name = "Config",
+						action = "Telescope find_files cwd=~/.config/nvim",
+						section = "Config",
+					},
 
+					{
+						name = "Restore session",
+						action = function()
+							local ok, persistence = pcall(require, "persistence")
+							if ok then
+								persistence.load()
+							else
+								print("persistence.nvim is not installed!")
+							end
+						end,
+						section = "Session",
+					},
+					{ name = "Lazy", action = "Lazy", section = "Config" },
+					{ name = "Quit", action = "qa", section = "Built-in" },
+				},
+				content_hooks = {
+					require("mini.starter").gen_hook.adding_bullet("  ░ ", false),
+					require("mini.starter").gen_hook.aligning("center", "center"),
+				},
+				footer = function()
+					local stats = require("lazy").stats()
+					local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+					return "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+				end,
+			})
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,
 			--  and try some other statusline plugin
