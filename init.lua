@@ -16,6 +16,10 @@ vim.opt.relativenumber = true
 -- Enable mouse mode, can be useful for resizing splits for example!
 -- vim.opt.mouse = "a"
 
+-- Move line
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
