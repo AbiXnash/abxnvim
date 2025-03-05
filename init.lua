@@ -12,7 +12,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = "a"
+-- vim.opt.mouse = "a"
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -69,6 +69,8 @@ vim.opt.expandtab = true -- Convert tabs to spaces
 vim.opt.softtabstop = 2 -- Backspace treats 2 spaces as a tab
 vim.opt.smartindent = true -- Auto-indent intelligently
 
+-- [[ File Navigation with netrw ]]
+--
 local last_buffer = nil
 
 vim.keymap.set("n", "<leader>e", function()
@@ -84,6 +86,16 @@ vim.keymap.set("n", "<leader>e", function()
 		vim.cmd("e .") -- Open the current directory
 	end
 end, { desc = "Toggle File Explorer" })
+
+-- [[ File Navigation: Left and Right movement disable ]]
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "netrw",
+	callback = function()
+		vim.keymap.set("n", "h", "<NOP>", { buffer = true })
+		vim.keymap.set("n", "l", "<NOP>", { buffer = true })
+	end,
+})
 
 -- [[ Basic Autocommands ]]
 
