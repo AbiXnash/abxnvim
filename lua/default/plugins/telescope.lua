@@ -42,7 +42,6 @@ return {
 			-- This opens a window that shows you all of the keymaps for the current
 			-- Telescope picker. This is really useful to discover what Telescope can
 			-- do as well as how to actually do it!
-
 			-- [[ Configure Telescope ]]
 			-- See `:help telescope` and `:help telescope.setup()`
 			require("telescope").setup({
@@ -78,7 +77,9 @@ return {
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
-
+			vim.keymap.set("n", "<leader>cs", function()
+				require("telescope.builtin").colorscheme({ enable_preview = true })
+			end, { desc = "Pick Colorscheme" })
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>sF", function()
 				-- You can pass additional configuration to Telescope to change the theme, layout, etc.
