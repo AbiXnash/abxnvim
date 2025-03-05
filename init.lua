@@ -7,6 +7,8 @@ vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 
+vim.opt.guicursor = "n-v-c:block,i:hor20"
+
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
