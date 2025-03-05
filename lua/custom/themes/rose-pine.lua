@@ -1,17 +1,16 @@
 return {
-	-- Fleet for syntax highlighting
+	-- Rosé Pine for UI
 	{
-		"felipeagc/fleet-theme-nvim",
-		name = "fleet",
+		"rose-pine/neovim",
+		name = "rose-pine",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.api.nvim_create_autocmd("ColorScheme", {
-				pattern = "rose-pine",
-				callback = function()
-					vim.cmd("colorscheme fleet") -- Apply Fleet syntax
-				end,
+			require("rose-pine").setup({
+				variant = "main",
+				disable_background = true, -- Keep transparency
 			})
+			vim.cmd("colorscheme rose-pine") -- Ensure Rosé Pine loads first
 		end,
 	},
 }
