@@ -261,6 +261,36 @@ return {
 			--
 			-- You can add other tools here that you want Mason to install
 			-- for you, so that they are available from within Neovim.
+			--
+
+			local lspconfig = require("lspconfig")
+
+			lspconfig.eslint.setup({
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				on_attach = function(client, bufnr)
+					-- Enable ESLint auto-fix and linting on save
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						callback = function()
+							vim.cmd("EslintFixAll")
+						end,
+					})
+				end,
+			})
+
+			lspconfig.ts_ls.setup({
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				on_attach = function(client, bufnr)
+					client.server_capabilities.documentFormattingProvider = false -- Disable default formatting if using Prettier
+				end,
+			})
+			lspconfig.tailwindcss.setup({
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				on_attach = function(client, bufnr)
+					client.server_capabilities.documentFormattingProvider = false
+				end,
+			})
+
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code

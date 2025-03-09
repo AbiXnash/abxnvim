@@ -82,8 +82,6 @@ vim.opt.spell = false
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 vim.keymap.set("i", "jj", "<Esc>")
--- Quit Vim
-vim.keymap.set("n", "<C-q>", "<cmd>q<CR>", { desc = "Bye Bye" })
 
 -- Toggle Comment
 vim.keymap.set("n", "<leader>/", function()
@@ -589,6 +587,11 @@ require("lazy").setup({
 		},
 	},
 })
+
+if vim.g.vscode then
+	-- Disable Noice when using VS Code
+	vim.g.noice_disable = true
+end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

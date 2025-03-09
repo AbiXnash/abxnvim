@@ -88,11 +88,12 @@ return {
 			end
 
 			opts.formatters_by_ft = {
-				-- ["*"] = { "injected" }, -- enables injected-lang formatting for all filetypes
 				python = { "ruff_format", "isort" },
 				c = { "clang_format" },
 				lua = { "stylua" },
 				sh = { "shfmt" },
+				javascript = { "prettier", "eslint_d", "quick-lint-js", "standardjs" },
+				typescript = { "prettier", "eslint_d", "quick-lint-js", "standardjs" },
 				["_"] = function(bufnr)
 					return require("astrocore.buffer").is_valid(bufnr)
 							and { "trim_whitespace", "trim_newlines", "squeeze_blanks" }
