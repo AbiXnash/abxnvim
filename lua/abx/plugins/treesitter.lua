@@ -1,57 +1,54 @@
 return {
-	{ -- Highlight, edit, and navigate code
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		main = "nvim-treesitter.configs", -- Sets main module to use for opts
-		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-		opts = {
+	"nvim-treesitter/nvim-treesitter",
+	build = ":TSUpdate",
+	config = function()
+		require("nvim-treesitter.configs").setup({
+			-- A list of parser names, or "all"
 			ensure_installed = {
-				"c",
-				"cpp",
-				"diff",
-				"html",
-				"css",
-				"typescript",
-				"typescript",
-				"tsx",
-				"json",
-
-				"java",
-				"bash",
-
-				"gitignore",
-				"gitcommit",
-				"xml",
-				"toml",
-				"yaml",
-				"json",
-
-				"lua",
-				"luadoc",
-				"vim",
 				"vimdoc",
-				"python",
-				"markdown",
-				"markdown_inline",
-
-				"sql",
-				"json",
-				"yaml",
-				"toml",
-
-				"gitignore",
+				"javascript",
+				"typescript",
+				"c",
+				"lua",
+				"rust",
+				"jsdoc",
 				"bash",
+				"java",
+				"python",
 			},
-			-- Autoinstall languages that are not installed
+
+			-- Install parsers synchronously (only applied to `ensure_installed`)
+			sync_install = false,
+
+			-- Automatically install missing parsers when entering buffer
+			-- Recommendation: set to false if you don"t have `tree-sitter` CLI installed locally
 			auto_install = true,
-			highlight = {
+
+			indent = {
 				enable = true,
-				-- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-				--  If you are experiencing weird indenting issues, add the language to
-				--  the list of additional_vim_regex_highlighting and disabled languages for indent.
-				additional_vim_regex_highlighting = { "ruby" },
 			},
-			indent = { enable = true, disable = { "ruby" } },
-		},
-	},
+
+			highlight = {
+				-- `false` will disable the whole extension
+				enable = true,
+
+				-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+				-- Set this to `true` if you depend on "syntax" being enabled (like for indentation).
+				-- Using this option may slow down your editor, and you may see some duplicate highlights.
+				-- Instead of true it can also be a list of languages
+				additional_vim_regex_highlighting = { "markdown" },
+			},
+		})
+
+		local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+		treesitter_parser_config.templ = {
+			install_info = {
+				url = "https://github.com/vrischmann/tree-sitter-templ.git",
+				files = { "src/parser.c", "src/scanner.c" },
+				branch = "master",
+			},
+		}
+
+		vim.treesitter.language.register("templ", "templ")
+	end,
 }

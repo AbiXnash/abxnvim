@@ -19,4 +19,3 @@ require("lazy").setup({
 })
 
 require("abx.remap")
-print("Hello")

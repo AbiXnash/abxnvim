@@ -1,15 +1,23 @@
 return {
 	{
 		"felipeagc/fleet-theme-nvim",
+		priority = 1000, -- Ensures Fleet loads before other themes
 		config = function()
-			-- Delay to override after theme applies
+			vim.cmd("colorscheme fleet") -- Load the Fleet theme
+
+			-- Delay to override highlights after theme applies
 			vim.schedule(function()
-				vim.cmd("highlight Normal guibg=#000000")
-				vim.cmd("highlight NormalNC guibg=#000000")
-				vim.cmd("highlight EndOfBuffer guibg=#000000")
-				vim.cmd("highlight SignColumn guibg=#000000")
-				vim.cmd("highlight LineNr guibg=#000000")
-				vim.cmd("highlight Folded guibg=#000000")
+				local highlights = {
+					"Normal",
+					"NormalNC",
+					"EndOfBuffer",
+					"SignColumn",
+					"LineNr",
+					"Folded",
+				}
+				for _, hl in ipairs(highlights) do
+					vim.cmd("highlight " .. hl .. " guibg=#000000")
+				end
 			end)
 		end,
 	},
