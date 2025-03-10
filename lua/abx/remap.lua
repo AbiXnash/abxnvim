@@ -26,11 +26,34 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- Quickfix
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- [[ Quickfix ]]
+
+-- Quickfix Navigation
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Next Quickfix Item" })
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Previous Quickfix Item" })
+
+-- Location List Navigation
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Next Location List Item" })
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Previous Location List Item" })
+
+-- Open & Close Quickfix List
+vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { desc = "Open Quickfix List" })
+vim.keymap.set("n", "<leader>qc", "<cmd>cclose<CR>", { desc = "Close Quickfix List" })
+
+-- Open & Close Location List
+vim.keymap.set("n", "<leader>lo", "<cmd>lopen<CR>", { desc = "Open Location List" })
+vim.keymap.set("n", "<leader>lc", "<cmd>lclose<CR>", { desc = "Close Location List" })
+
+-- Navigate Quickfix List and Jump to the Error Location
+vim.keymap.set("n", "<C-n>", function()
+	vim.cmd("cnext") -- Move to next error
+	vim.cmd("cc") -- Jump to the corresponding location
+end, { desc = "Next Quickfix Item & Jump" })
+
+vim.keymap.set("n", "<C-p>", function()
+	vim.cmd("cprev") -- Move to previous error
+	vim.cmd("cc") -- Jump to the corresponding location
+end, { desc = "Previous Quickfix Item & Jump" })
 
 -- Replace
 vim.keymap.set("n", "<Leader>r", function()
