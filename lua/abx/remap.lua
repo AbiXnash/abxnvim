@@ -1,7 +1,7 @@
 require("abx.keymaps.harpoon-map")
 
 -- Cap Q
-vim.keymap.set("n", "Q", "<nop>")
+vim.api.nvim_create_user_command("Q", "q", {})
 
 -- <Esc> to exit search mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
