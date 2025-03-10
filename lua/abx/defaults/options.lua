@@ -1,3 +1,4 @@
+-- Leader Key!
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -21,6 +22,12 @@ end)
 
 -- Save Undo History
 vim.opt.undofile = true
+vim.opt.swapfile = false
+vim.opt.backup = false
+
+-- Search Highlight
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
 
 -- Case-Sensitive search
 -- unless \C or one or more capital terms in search
@@ -30,6 +37,9 @@ vim.opt.smartcase = true
 -- Keep signcolumn, yes
 vim.opt.signcolumn = "no"
 
+-- Column Width
+vim.opt.colorcolumn = "80"
+
 -- Split screens
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -38,7 +48,7 @@ vim.opt.splitbelow = true
 vim.opt.inccommand = "split"
 
 -- Scroll off Line
-vim.opt.scrolloff = 15
+vim.opt.scrolloff = 20
 
 -- Line wrap and breaking
 vim.opt.wrap = false
@@ -53,3 +63,6 @@ vim.opt.shiftwidth = 2 -- Number of spaces for indentation
 vim.opt.expandtab = true -- Convert tabs to spaces
 vim.opt.softtabstop = 2 -- Backspace treats 2 spaces as a tab
 vim.opt.smartindent = true -- Auto-indent intelligently
+
+-- Fast Update Time
+vim.opt.updatetime = 50

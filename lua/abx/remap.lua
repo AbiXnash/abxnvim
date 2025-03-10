@@ -1,3 +1,6 @@
+-- Cap Q
+vim.keymap.set("n", "Q", "<nop>")
+
 -- <Esc> to exit search mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
@@ -17,11 +20,41 @@ vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Stay at the middle
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- Quickfix
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+
+-- Replace
+vim.keymap.set("n", "<Leader>r", function()
+	local word = vim.fn.expand("<cword>")
+	local new_word = vim.fn.input("Replace " .. word .. " with: ")
+	if new_word ~= "" then
+		vim.cmd(":%s/\\<" .. word .. "\\>/" .. new_word .. "/gc")
+	end
+end, { noremap = true, silent = false })
+
+vim.keymap.set("n", "<Leader>R", function()
+	local word = vim.fn.expand("<cword>")
+	local new_word = vim.fn.input("Replace (ignore case) " .. word .. " with: ")
+	if new_word ~= "" then
+		vim.cmd(":%s/\\<" .. word .. "\\>/" .. new_word .. "/gIc")
+	end
+end, { noremap = true, silent = false })
+
 -- Toggle Comment
 vim.keymap.set("n", "<leader>/", function()
 	vim.cmd("normal! gcc")
 end, { desc = "Toggle Comment" })
 
+-- Undo Tree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, {
 	desc = "Undo Tree UI",
 })
