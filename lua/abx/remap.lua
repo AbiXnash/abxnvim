@@ -1,7 +1,9 @@
 require("abx.keymaps.harpoon-map")
 require("abx.keymaps.netrw-map")
 require("abx.keymaps.telescope-map")
-
+require("abx.keymaps.lsp-map")
+require("abx.keymaps.trouble-map")
+require("abx.keymaps.comments-map")
 -- Cap Q
 vim.api.nvim_create_user_command("Q", "q", {})
 
@@ -31,46 +33,19 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- Line Navigation
+-- Split Screen
+vim.keymap.set("n", "<C-s>", ":split<CR>", { noremap = true, silent = true }) -- Ctrl + s for horizontal split
+vim.keymap.set("n", "<C-v>", ":vsplit<CR>", { noremap = true, silent = true }) -- Ctrl + v for vertical split
 
+-- Line Navigation
 vim.keymap.set("n", "H", "^", { desc = "Go to first word of the line" })
 vim.keymap.set("n", "L", "g_", { desc = "Go to end of the line (excluding newline)" })
 
 -- Window Switch
-
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
-print("Hello")
--- [[ Quickfix ]]
-
--- Quickfix Navigation
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Next Quickfix Item" })
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Previous Quickfix Item" })
-
--- Location List Navigation
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Next Location List Item" })
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Previous Location List Item" })
-
--- Open & Close Quickfix List
-vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { desc = "Open Quickfix List" })
-vim.keymap.set("n", "<leader>qc", "<cmd>cclose<CR>", { desc = "Close Quickfix List" })
-
--- Open & Close Location List
-vim.keymap.set("n", "<leader>lo", "<cmd>lopen<CR>", { desc = "Open Location List" })
-vim.keymap.set("n", "<leader>lc", "<cmd>lclose<CR>", { desc = "Close Location List" })
-
--- Navigate Quickfix List and Jump to the Error Location
-vim.keymap.set("n", "<C-n>", function()
-	vim.cmd("cnext") -- Move to next error
-	vim.cmd("cc") -- Jump to the corresponding location
-end, { desc = "Next Quickfix Item & Jump" })
-
-vim.keymap.set("n", "<C-p>", function()
-	vim.cmd("cprev") -- Move to previous error
-	vim.cmd("cc") -- Jump to the corresponding location
-end, { desc = "Previous Quickfix Item & Jump" })
 
 -- Replace
 vim.keymap.set("n", "<Leader>r", function()
@@ -89,13 +64,7 @@ vim.keymap.set("n", "<Leader>R", function()
 	end
 end, { noremap = true, silent = false })
 
--- Toggle Comment
-vim.keymap.set("n", "<leader>/", function()
-	vim.cmd("normal! gcc")
-end, { desc = "Toggle Comment" })
-
 -- Undo Tree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, {
 	desc = "Undo Tree UI",
 })
--- TODO: undotree not working
