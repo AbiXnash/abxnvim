@@ -37,9 +37,6 @@ vim.opt.smartcase = true
 -- Keep signcolumn, yes
 vim.opt.signcolumn = "no"
 
--- Column Width
-vim.opt.colorcolumn = "80"
-
 -- Split screens
 vim.opt.splitright = true
 vim.opt.splitbelow = true
