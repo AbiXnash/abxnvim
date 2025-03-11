@@ -33,32 +33,15 @@ return {
 					end
 
 					map("gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
-
 					map("gr", require("telescope.builtin").lsp_references, "Goto References")
-
 					map("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
-
 					map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type Definition")
-
-					-- Fuzzy find all the symbols in your current document.
-					--  Symbols are things like variables, functions, types, etc.
 					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
-
-					-- Fuzzy find all the symbols in your current workspace.
-					--  Similar to document symbols, except searches over your entire project.
 					map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
-
-					-- Rename the variable under your cursor.
-					--  Most Language Servers support renaming across files, etc.
 					map("<leader>rn", vim.lsp.buf.rename, "Rename")
-
-					-- Execute a code action, usually your cursor needs to be on top of an error
-					-- or a suggestion from your LSP for this to activate.
 					map("<leader>ca", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
-
-					-- WARN: This is not Goto Definition, this is Goto Declaration.
-					--  For example, in C this would take you to the header.
 					map("gD", vim.lsp.buf.declaration, "Goto Declaration")
+					map("<C-h>", vim.lsp.buf.signature_help, "Signature Help", "i")
 
 					-- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
 					---@param client vim.lsp.Client

@@ -1,5 +1,4 @@
 return {
-	"jiaoshijie/undotree",
+	"mbbill/undotree",
 	dependencies = "nvim-lua/plenary.nvim",
-	config = true,
 }

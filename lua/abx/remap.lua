@@ -1,10 +1,13 @@
 require("abx.keymaps.harpoon-map")
+require("abx.keymaps.netrw-map")
+require("abx.keymaps.telescope-map")
 
 -- Cap Q
 vim.api.nvim_create_user_command("Q", "q", {})
 
 -- <Esc> to exit search mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "J", "<cmd>nop<CR>")
 
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
@@ -33,6 +36,13 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "H", "^", { desc = "Go to first word of the line" })
 vim.keymap.set("n", "L", "g_", { desc = "Go to end of the line (excluding newline)" })
 
+-- Window Switch
+
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
+print("Hello")
 -- [[ Quickfix ]]
 
 -- Quickfix Navigation
@@ -88,3 +98,4 @@ end, { desc = "Toggle Comment" })
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, {
 	desc = "Undo Tree UI",
 })
+-- TODO: undotree not working
