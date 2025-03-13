@@ -35,7 +35,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn, yes
-vim.opt.signcolumn = "no"
+vim.opt.signcolumn = "yes"
 
 -- Split screens
 vim.opt.splitright = true
