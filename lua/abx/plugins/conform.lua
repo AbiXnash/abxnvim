@@ -8,6 +8,9 @@ return {
 			{
 				"AstroNvim/astrocore",
 				opts = {
+					formattters_by_ft = {
+						go = { "goimports", "gofmt" },
+					},
 					options = { opt = { formatexpr = "v:lua.require'conform'.formatexpr()" } },
 					commands = {
 						Format = {

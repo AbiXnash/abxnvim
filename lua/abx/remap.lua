@@ -6,6 +6,7 @@ require("abx.keymaps.trouble-map")
 require("abx.keymaps.comments-map")
 -- Cap Q
 vim.api.nvim_create_user_command("Q", "q", {})
+vim.api.nvim_create_user_command("W", "w", {})
 
 -- <Esc> to exit search mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")

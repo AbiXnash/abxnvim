@@ -172,6 +172,18 @@ return {
 				end,
 			})
 
+			lspconfig.gopls.setup({
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				on_attach = function(client, bufnr)
+					-- Enable ESLint auto-fix and linting on save
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						callback = function()
+							vim.cmd("EslintFixAll")
+						end,
+					})
+				end,
+			})
 			lspconfig.ts_ls.setup({
 				capabilities = require("cmp_nvim_lsp").default_capabilities(),
 				on_attach = function(client, bufnr)

@@ -27,7 +27,8 @@ end, { desc = "Harpoon: Go to file 4" })
 -- Cycle through files
 vim.keymap.set("n", "]", function()
 	harpoon:list():next()
-end, { desc = "Harpoon: Next file" })
+end, { desc = "Harpoon: Next file", silent = true })
+
 vim.keymap.set("n", "[", function()
 	harpoon:list():prev()
-end, { desc = "Harpoon: Previous file" })
+end, { desc = "Harpoon: Previous file", silent = true })

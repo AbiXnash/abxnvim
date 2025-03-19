@@ -4,6 +4,7 @@ return {
 	dependencies = { "williamboman/mason.nvim" },
 	opts = {
 		linters_by_ft = {
+			go = { "staticcheck" },
 			lua = { "selene" },
 			sh = { "shellcheck" },
 			python = { "bandit", "mypy" },

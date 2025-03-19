@@ -60,9 +60,9 @@ vim.opt.shiftwidth = 2 -- Number of spaces for indentation
 vim.opt.expandtab = true -- Convert tabs to spaces
 vim.opt.softtabstop = 2 -- Backspace treats 2 spaces as a tab
 vim.opt.smartindent = true -- Auto-indent intelligently
-
+vim.opt.showmode = false
 -- Fast Update Time
-vim.opt.updatetime = 50
+vim.opt.updatetime = 10
 
 -- NETRW
 vim.g.netrw_browse_split = 0
