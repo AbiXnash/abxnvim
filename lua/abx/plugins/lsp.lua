@@ -201,6 +201,13 @@ return {
 				filetypes = { "typescript", "html", "angular" },
 			})
 
+			lspconfig.marksman.setup({
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				on_attach = function(client, bufnr)
+					client.server_capabilities.documentFormattingProvider = false -- Disable default formatting if using Prettier
+				end,
+			})
+
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code

@@ -91,7 +91,7 @@ return {
 			end
 
 			opts.formatters_by_ft = {
-				python = { "ruff_format", "isort" },
+				python = { "black", "isort" },
 				c = { "clang_format" },
 				lua = { "stylua" },
 				sh = { "shfmt" },

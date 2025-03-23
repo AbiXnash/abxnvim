@@ -3,6 +3,9 @@ return {
 	opts = {
 		window = {
 			options = {
+				linebreak = true,
+				breakindent = true,
+				wrap = true,
 				number = false,
 				relativenumber = false,
 			},
