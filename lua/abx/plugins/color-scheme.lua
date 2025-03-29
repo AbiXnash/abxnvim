@@ -1,12 +1,12 @@
 return {
 	{
 		"felipeagc/fleet-theme-nvim",
-		priority = 1000, -- Ensures Fleet loads before other themes
+		-- priority = 1000, -- Ensures Fleet loads before other themes
 		config = function()
 			vim.cmd("colorscheme fleet") -- Load the Fleet theme
 
-			-- Delay to override highlights after theme applies
 			vim.schedule(function()
+				-- Delay to override highlights after theme applies
 				local highlights = {
 					"Normal",
 					"NormalNC",
