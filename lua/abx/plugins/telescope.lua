@@ -17,6 +17,15 @@ return {
 		},
 		config = function()
 			require("telescope").setup({
+				defaults = {
+					layout_strategy = "horizontal",
+					layout_config = {
+						preview_cutoff = 120,
+						horizontal = { width = 0.9, height = 0.8, preview_width = 0.5 },
+					},
+					file_ignore_patterns = { "node_modules", ".git/" },
+					borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
@@ -30,5 +39,17 @@ return {
 	},
 	{
 		"mrloop/telescope-git-branch.nvim",
+	},
+	{
+		"nvim-telescope/telescope-file-browser.nvim",
+		config = function()
+			require("telescope").load_extension("file_browser")
+		end,
+	},
+	{
+		"nvim-telescope/telescope-media-files.nvim",
+		config = function()
+			require("telescope").load_extension("media_files")
+		end,
 	},
 }
