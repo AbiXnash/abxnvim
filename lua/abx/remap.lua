@@ -7,6 +7,7 @@ require("abx.keymaps.comments-map")
 -- Cap Q
 vim.api.nvim_create_user_command("Q", "q", {})
 vim.api.nvim_create_user_command("W", "w", {})
+vim.api.nvim_create_user_command("Wq", "wq", {})
 
 -- <Esc> to exit search mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -47,23 +48,6 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
-
--- Replace
-vim.keymap.set("n", "<Leader>r", function()
-	local word = vim.fn.expand("<cword>")
-	local new_word = vim.fn.input("Replace " .. word .. " with: ")
-	if new_word ~= "" then
-		vim.cmd(":%s/\\<" .. word .. "\\>/" .. new_word .. "/gc")
-	end
-end, { noremap = true, silent = false })
-
-vim.keymap.set("n", "<Leader>R", function()
-	local word = vim.fn.expand("<cword>")
-	local new_word = vim.fn.input("Replace (ignore case) " .. word .. " with: ")
-	if new_word ~= "" then
-		vim.cmd(":%s/\\<" .. word .. "\\>/" .. new_word .. "/gIc")
-	end
-end, { noremap = true, silent = false })
 
 -- Undo Tree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, {
