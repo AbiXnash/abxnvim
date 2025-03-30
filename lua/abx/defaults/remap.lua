@@ -1,4 +1,5 @@
 local harpoon = require("harpoon")
+
 -- Cap Q
 vim.api.nvim_create_user_command("Q", "q", {})
 vim.api.nvim_create_user_command("W", "w", {})
@@ -13,9 +14,6 @@ vim.keymap.set("n", "<left>", '<cmd>Use h to move!!"<CR>')
 vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
-
--- Diagnostic keymaps
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Quickfix list" })
 
 -- Enter Normal Mode
 vim.keymap.set("i", "jk", "<Esc>")
@@ -47,7 +45,6 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, {
 
 harpoon:setup() -- Correct Harpoon v2 setup
 
--- Keybindings
 vim.keymap.set("n", "<leader>ha", function()
 	harpoon:list():add()
 end, { desc = "Harpoon: Add file" })
@@ -55,7 +52,6 @@ vim.keymap.set("n", "<leader>hm", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list())
 end, { desc = "Harpoon: Open menu" })
 
--- Jump between files
 vim.keymap.set("n", "<leader>hh", function()
 	harpoon:list():select(1)
 end, { desc = "Harpoon: Go to file 1" })
@@ -70,11 +66,10 @@ vim.keymap.set("n", "<leader>hl", function()
 end, { desc = "Harpoon: Go to file 4" })
 
 -- Cycle through files
-vim.keymap.set("n", "]", function()
+vim.keymap.set("n", "<leader> hn", function()
 	harpoon:list():next()
 end, { desc = "Harpoon: Next file", silent = true })
-
-vim.keymap.set("n", "[", function()
+vim.keymap.set("n", "<leader> hp", function()
 	harpoon:list():prev()
 end, { desc = "Harpoon: Previous file", silent = true })
 
@@ -82,7 +77,7 @@ end, { desc = "Harpoon: Previous file", silent = true })
 
 local last_buffer = nil
 
-vim.keymap.set("n", "<leader>e", function()
+vim.keymap.set("n", "<leader>pv", function()
 	local current_buf = vim.api.nvim_get_current_buf()
 
 	-- If already in netrw or file explorer, switch back to last buffer
@@ -92,19 +87,10 @@ vim.keymap.set("n", "<leader>e", function()
 	else
 		-- Save current buffer before opening netrw
 		last_buffer = current_buf
-		vim.cmd("e .") -- Open the current directory
+		vim.cmd("Ex") -- Open the current directory
 	end
 end, { desc = "Toggle File Explorer" })
 
--- [[ File Navigation: Left and Right movement disable ]]
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "netrw",
-	callback = function()
-		vim.keymap.set("n", "h", "<NOP>", { buffer = true })
-		vim.keymap.set("n", "l", "<NOP>", { buffer = true })
-	end,
-})
 -- [[ Telescope ]]
 local builtin = require("telescope.builtin")
 
@@ -116,6 +102,7 @@ vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" 
 vim.keymap.set("n", "<leader>fs", function()
 	builtin.grep_string({ search = vim.fn.input("Search >> ") })
 end, { desc = "Telescope help tags" })
+
 -- trouble_keymap.lua (Keymap configurations for Trouble)
 vim.keymap.set("n", "<leader>q", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
 vim.keymap.set(
