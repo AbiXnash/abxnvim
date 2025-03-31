@@ -66,10 +66,10 @@ vim.keymap.set("n", "<leader>hl", function()
 end, { desc = "Harpoon: Go to file 4" })
 
 -- Cycle through files
-vim.keymap.set("n", "<leader> hn", function()
+vim.keymap.set("n", "<leader>hn", function()
 	harpoon:list():next()
 end, { desc = "Harpoon: Next file", silent = true })
-vim.keymap.set("n", "<leader> hp", function()
+vim.keymap.set("n", "<leader>hp", function()
 	harpoon:list():prev()
 end, { desc = "Harpoon: Previous file", silent = true })
 

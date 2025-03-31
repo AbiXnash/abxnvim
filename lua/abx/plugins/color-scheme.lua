@@ -6,18 +6,19 @@ return {
 		"projekt0n/github-nvim-theme",
 		name = "github-theme",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
-		priority = 1001, -- make sure to load this before all the other start plugins
+		-- priority = 1001, -- make sure to load this before all the other start plugins
 		config = function()
 			require("github-theme").setup({
 				-- ...
 			})
 
-			-- vim.cmd("colorscheme github_dark")
+			vim.cmd("colorscheme github_dark")
 		end,
 	},
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",
+		-- priority = 999, -- Ensures Fleet loads before other themes
 		config = function()
 			require("rose-pine").setup({
 				variant = "main", -- or "moon" / "dawn"
@@ -27,7 +28,8 @@ return {
 			vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#000000" }) -- Matches floating window background
 			vim.api.nvim_set_hl(0, "HarpoonBorder", { bg = "NONE", blend = 100 }) -- Ensures Harpoon border is transparent
 			vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE", blend = 100 }) -- Removes background color from window separators
-			-- vim.cmd("colorscheme rose-pine")
+
+			vim.cmd("colorscheme rose-pine")
 			vim.schedule(function()
 				-- General highlights
 				local highlights = {
@@ -61,7 +63,10 @@ return {
 		"felipeagc/fleet-theme-nvim",
 		priority = 1000, -- Ensures Fleet loads before other themes
 		config = function()
-			vim.cmd("colorscheme fleet") -- Load the Fleet theme
+			-- vim.cmd("colorscheme fleet") -- Load the Fleet theme
+			vim.defer_fn(function()
+				vim.api.nvim_set_hl(0, "String", { fg = "#89b4fa", italic = true }) -- BLUE
+			end, 50)
 
 			vim.schedule(function()
 				-- Delay to override highlights after theme applies
