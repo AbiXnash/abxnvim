@@ -58,7 +58,7 @@ vim.opt.formatoptions:remove("n") -- Prevent numbered list indentation
 vim.opt.tabstop = 4 -- Number of spaces a <Tab> counts for
 vim.opt.shiftwidth = 4 -- Number of spaces for indentation
 vim.opt.expandtab = true -- Convert tabs to spaces
-vim.opt.softtabstop = 4 -- Backspace treats 2 spaces as a tab
+vim.opt.softtabstop = 4 -- Backspace treats 4 spaces as a tab
 vim.opt.smartindent = true -- Auto-indent intelligently
 vim.opt.showmode = false
 
