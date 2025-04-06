@@ -7,7 +7,9 @@ return {
 
 			return {
 				sources = {
-					null_ls.builtins.formatting.prettierd, -- Prettier daemon for better performance
+					null_ls.builtins.formatting.prettierd.with({
+						disabled_filetype = { "html" },
+					}), -- Prettier daemon for better performance
 					null_ls.builtins.formatting.black,
 				},
 				on_attach = function(client, bufnr)
