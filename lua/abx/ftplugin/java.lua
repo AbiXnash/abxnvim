@@ -11,7 +11,7 @@ local extendedClientCapabilities = jdtls.extendedClientCapabilities
 
 local config = {
 	cmd = {
-		"java",
+		"/usr/lib/jvm/java-21-openjdk/bin/java",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 		"-Dosgi.bundles.defaultStartLevel=4",
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -23,11 +23,11 @@ local config = {
 		"java.base/java.util=ALL-UNNAMED",
 		"--add-opens",
 		"java.base/java.lang=ALL-UNNAMED",
-		"-javaagent:" .. home .. "~/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+		"-javaagent:" .. home .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
 		"-jar",
-		vim.fn.glob(home .. "~/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+		vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
 		"-configuration",
-		home .. "~/.local/share/nvim/mason/packages/jdtls/config_linux_arm/",
+		home .. "/.local/share/nvim/mason/packages/jdtls/config_linux_arm/",
 		"-data",
 		workspace_dir,
 	},
@@ -35,34 +35,45 @@ local config = {
 
 	settings = {
 		java = {
-			signatureHelp = { enabled = true },
-			extendedClientCapabilities = extendedClientCapabilities,
-			maven = {
-				downloadSources = true,
-			},
-			referencesCodeLens = {
-				enabled = true,
-			},
-			references = {
-				includeDecompiledSources = true,
-			},
-			inlayHints = {
-				parameterNames = {
-					enabled = "all", -- literals, all, none
+			configuration = {
+				-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
+				-- And search for `interface RuntimeOption`
+				-- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
+				runtimes = {
+					{
+						name = "JavaSE-21",
+						path = "/usr/lib/jvm/jre-21-openjdk/",
+					},
+				},
+				signatureHelp = { enabled = true },
+				extendedClientCapabilities = extendedClientCapabilities,
+				maven = {
+					downloadSources = true,
+				},
+				referencesCodeLens = {
+					enabled = true,
+				},
+				references = {
+					includeDecompiledSources = true,
+				},
+				inlayHints = {
+					parameterNames = {
+						enabled = "all", -- literals, all, none
+					},
+				},
+				format = {
+					enabled = true,
 				},
 			},
-			format = {
-				enabled = true,
-			},
+		},
+
+		init_options = {
+			bundles = {},
 		},
 	},
-
-	init_options = {
-		bundles = {},
-	},
 }
-require("jdtls").start_or_attach(config)
 
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = true, desc = "Go to Definition" })
 vim.keymap.set("n", "<leader>co", "<Cmd>lua require'jdtls'.organize_imports()<CR>", { desc = "Organize Imports" })
 vim.keymap.set("n", "<leader>crv", "<Cmd>lua require('jdtls').extract_variable()<CR>", { desc = "Extract Variable" })
 vim.keymap.set(

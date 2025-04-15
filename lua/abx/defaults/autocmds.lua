@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- HTML Template
+-- HTML T mplate
 vim.api.nvim_create_user_command("HtmlTemplate", function()
 	local lines = {
 		"<!DOCTYPE html>",
@@ -36,7 +36,7 @@ end, {})
 
 -- For HTML files only
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "html",
+	pattern = { "html", "css" },
 	callback = function()
 		vim.opt_local.shiftwidth = 2
 		vim.opt_local.tabstop = 2

@@ -78,7 +78,6 @@ return {
 						group_index = 0,
 					},
 					{ name = "nvim_lsp" },
-					{ name = "html-css" },
 					{ name = "luasnip" },
 					{ name = "path" },
 					{ name = "nvim_lsp_signature_help" },

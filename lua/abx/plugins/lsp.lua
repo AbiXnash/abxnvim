@@ -223,7 +223,7 @@ return {
 				filetypes = { "typescript", "angular" },
 			})
 
-			lspconfig.html.setup({
+			lspconfig.htmx.setup({
 				capabilities = require("cmp_nvim_lsp").default_capabilities(),
 				on_attach = function(client, bufnr)
 					client.server_capabilities.documentformattingprovider = false -- disable default formatting if using prettier
@@ -241,6 +241,7 @@ return {
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
 			})
+
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			require("mason-lspconfig").setup({
