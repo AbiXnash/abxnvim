@@ -3,6 +3,9 @@ return {
 	dependencies = {
 		"rcarriga/nvim-dap-ui",
 		"nvim-neotest/nvim-nio",
+		"mfussenegger/nvim-dap-python",
+		"leoluz/nvim-dap-go",
+		"jay-babu/mason-nvim-dap.nvim",
 	},
 	config = function()
 		local dapui = require("dapui")
@@ -67,7 +70,22 @@ return {
 			},
 		})
 		local dap = require("dap")
-
+		--Java debugger adapter settings
+		dap.configurations.java = {
+			{
+				name = "Debug (Attach) - Remote",
+				type = "java",
+				request = "attach",
+				hostName = "127.0.0.1",
+				port = 5005,
+			},
+			{
+				name = "Debug Non-Project class",
+				type = "java",
+				request = "launch",
+				program = "${file}",
+			},
+		}
 		dap.listeners.after.event_initialized["dapui_config"] = function()
 			dapui.open()
 		end
