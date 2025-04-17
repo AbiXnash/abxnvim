@@ -35,7 +35,9 @@ local config = {
 
 	settings = {
 		java = {
+			home = "/usr/lib/jvm/jre-21-openjdk",
 			configuration = {
+				updateBuildConfiguration = "interactive",
 				-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
 				-- And search for `interface RuntimeOption`
 				-- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above

@@ -1,5 +1,1 @@
-return {
-	{
-		"mfussenegger/nvim-jdtls",
-	},
-}
+return { "nvim-java/nvim-java" }
