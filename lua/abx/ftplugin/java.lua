@@ -3,13 +3,25 @@ local workspace_path = home .. "/.local/share/nvim/jdtls-workspace/"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = workspace_path .. project_name
 
--- Safely require modules
+-- Require modules safely
 local jdtls_status, jdtls = pcall(require, "jdtls")
 if not jdtls_status then
 	return
 end
 
 local dap_status, dap = pcall(require, "dap")
+
+-- Find root dir using lspconfig util
+local root_pattern = require("lspconfig.util").root_pattern
+local root_dir = root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle")(vim.fn.getcwd())
+
+-- Debug print to confirm root_dir
+print("Java root dir: ", root_dir)
+
+if not root_dir then
+	print("⚠️ jdtls root_dir not found! Make sure you're inside a proper Java project.")
+	return
+end
 
 -- Extended capabilities
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
@@ -33,11 +45,11 @@ local config = {
 		"-jar",
 		vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
 		"-configuration",
-		home .. "/.local/share/nvim/mason/packages/jdtls/config_linux_arm/",
+		home .. "/.local/share/nvim/mason/packages/jdtls/config_linux/",
 		"-data",
 		workspace_dir,
 	},
-	root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }),
+	root_dir = root_dir,
 	settings = {
 		java = {
 			configuration = {
@@ -59,12 +71,25 @@ local config = {
 	},
 }
 
+local lspconfig = require("lspconfig")
+
+-- Only override if not already defined
+if not lspconfig.configs.jdtls then
+	lspconfig.configs.jdtls = {
+		default_config = {
+			cmd = { "jdtls" }, -- dummy command
+			filetypes = { "java" },
+			root_dir = function()
+				return nil
+			end, -- disables auto root detection
+		},
+	}
+end
 -- Start or Attach JDTLS
 jdtls.start_or_attach(config)
 
 -- DAP Setup if DAP is available
 if dap_status then
-	-- Define how java debug adapter is initialized
 	dap.adapters.java = function(callback, config)
 		jdtls.execute_command({ command = "vscode.java.startDebugSession" }, function(err, port)
 			assert(not err, vim.inspect(err))
@@ -76,7 +101,6 @@ if dap_status then
 		end)
 	end
 
-	-- DAP configurations
 	dap.configurations.java = {
 		{
 			type = "java",
@@ -86,7 +110,6 @@ if dap_status then
 				local file = vim.fn.expand("%:p")
 				local content = vim.fn.readfile(file)
 
-				-- Detect package
 				local package_name
 				for _, line in ipairs(content) do
 					local match = line:match("^%s*package%s+([%w%.]+)%s*;")
@@ -96,41 +119,44 @@ if dap_status then
 					end
 				end
 
-				-- Get class name from file name
 				local class_name = vim.fn.expand("%:t:r")
 
-				-- Full mainClass path
 				if package_name then
 					return package_name .. "." .. class_name
 				else
 					return class_name
 				end
 			end,
-			projectName = function()
-				return vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-			end,
+			projectName = project_name,
 			cwd = vim.fn.getcwd(),
 			console = "integratedTerminal",
 		},
 	}
 end
 
--- Keymaps for Java actions
+-- Keymaps for Java LSP
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = true, desc = "Go to Definition" })
-vim.keymap.set("n", "<leader>co", "<Cmd>lua require'jdtls'.organize_imports()<CR>", { desc = "Organize Imports" })
-vim.keymap.set("n", "<leader>crv", "<Cmd>lua require('jdtls').extract_variable()<CR>", { desc = "Extract Variable" })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = true, desc = "Show Hover" })
+vim.keymap.set("n", "<leader>co", function()
+	jdtls.organize_imports()
+end, { desc = "Organize Imports" })
+vim.keymap.set("n", "<leader>crv", function()
+	jdtls.extract_variable()
+end, { desc = "Extract Variable" })
 vim.keymap.set(
 	"v",
 	"<leader>crv",
 	"<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>",
-	{ desc = "Extract Variable" }
+	{ desc = "Extract Variable (Visual)" }
 )
-vim.keymap.set("n", "<leader>crc", "<Cmd>lua require('jdtls').extract_constant()<CR>", { desc = "Extract Constant" })
+vim.keymap.set("n", "<leader>crc", function()
+	jdtls.extract_constant()
+end, { desc = "Extract Constant" })
 vim.keymap.set(
 	"v",
 	"<leader>crc",
 	"<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>",
-	{ desc = "Extract Constant" }
+	{ desc = "Extract Constant (Visual)" }
 )
 vim.keymap.set(
 	"v",

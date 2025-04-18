@@ -94,19 +94,20 @@ return {
 				python = { "black", "isort" },
 				c = { "clang_format" },
 				lua = { "stylua" },
+				-- java = { "google-java-format" },
 				sh = { "shfmt" },
 				javascript = { "prettier", "eslint_d", "quick-lint-js", "standardjs" },
 				typescript = { "prettier", "eslint_d", "quick-lint-js", "standardjs" },
-				["_"] = function(bufnr)
-					return require("astrocore.buffer").is_valid(bufnr)
-							and { "trim_whitespace", "trim_newlines", "squeeze_blanks" }
-						or {}
-				end,
+				-- ["_"] = function(bufnr)
+				-- 	return require("astrocore.buffer").is_valid(bufnr)
+				-- 			and { "trim_whitespace", "trim_newlines", "squeeze_blanks" }
+				-- 		or {}
+				-- end,
 			}
 
 			-- prettier filetypes
 			vim.tbl_map(function(ft)
-				opts.formatters_by_ft[ft] = { "prettier" }
+				opts.formatters_by_ft[ft] = { "prettierd" }
 			end, {
 				"javascript",
 				"javascriptreact",
@@ -116,7 +117,6 @@ return {
 				"css",
 				"scss",
 				"less",
-				"java",
 				"python",
 				"json",
 				"jsonc",

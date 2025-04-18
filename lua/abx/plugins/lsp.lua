@@ -163,6 +163,12 @@ return {
 				end,
 			})
 
+			require("lspconfig").jdtls.setup({
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				on_attach = function(client, bufnr)
+					client.server_capabilities.documentFormattingProvider = false
+				end,
+			})
 			lspconfig.gopls.setup({
 				capabilities = require("cmp_nvim_lsp").default_capabilities(),
 				on_attach = function(client, bufnr)

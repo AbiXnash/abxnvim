@@ -8,9 +8,10 @@ return {
 			return {
 				sources = {
 					null_ls.builtins.formatting.prettierd.with({
-						disabled_filetype = { "html" },
+						disabled_filetype = { "html", "java" },
 					}), -- Prettier daemon for better performance
 					null_ls.builtins.formatting.black,
+					null_ls.builtins.formatting.google_java_format,
 				},
 				on_attach = function(client, bufnr)
 					local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
