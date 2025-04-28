@@ -34,3 +34,6 @@ vim.keymap.set("n", "<C-k>", "<C-w>k") -- Up
 
 -- System clipboard
 vim.keymap.set("v", "<C-c>", '"+y')
+
+-- File Tree
+vim.keymap.set("n", "<leader>pv", "<cmd>:Explore<CR>")
