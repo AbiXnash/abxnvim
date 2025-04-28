@@ -4,6 +4,9 @@ return {
 
     config = function()
         require("nvim-treesitter.configs").setup({
+            modules = {},
+            ignore_install = {},
+
             ensure_installed = { "lua", "vimdoc", "java" },
 
             sync_install = false,
