@@ -26,6 +26,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("abx.configs.options")
 require("abx.configs.remaps")
+require("abx.configs.autocmd")
 
 require("lazy").setup({
 	spec = {
