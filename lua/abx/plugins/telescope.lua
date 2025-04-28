@@ -4,36 +4,59 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
-        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
+        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
-
     config = function()
-        -- Set the theme to Ivy for Telescope
-        require('telescope').setup {
+        require("telescope").setup({
             defaults = {
                 layout_strategy = 'bottom_pane',
-            }
-        }
-    end,
-    keys = {
+            },
+            file_ignore_patterns = { "node_modules", ".git/" },
+        })
+
         -- Goto ~/.config/nvim files
-        { "<leader>vim", function()
+        vim.keymap.set("n", "<leader>vim", function()
             require('telescope.builtin').find_files {
                 cwd = vim.fn.stdpath("config")
             }
-        end },
+        end)
 
         -- Find Files from parent directory
-        { "<leader>fd",       require('telescope.builtin').find_files },
+        vim.keymap.set("n", "<leader>fd", function()
+            require('telescope.builtin').find_files()
+        end)
 
         -- Find words from parent directory
-        { "<leader>fs",       require('telescope.builtin').live_grep },
+        vim.keymap.set("n", "<leader>fs", function()
+            require('telescope.builtin').live_grep()
+        end)
 
         -- Find git files
-        { "<leader><leader>", require('telescope.builtin').git_files },
+        vim.keymap.set("n", "<leader><leader>", function()
+            require('telescope.builtin').git_files()
+        end)
 
         -- Find by current buffers
-        { "<leader>fb",       require('telescope.builtin').buffers },
-    },
+        vim.keymap.set("n", "<leader>fb", function()
+            require('telescope.builtin').buffers()
+        end)
+
+        -- LSP-based Code Actions
+        vim.api.nvim_create_autocmd("LspAttach", {
+            group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+            callback = function()
+                vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions)
+                vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references)
+                vim.keymap.set("n", "<leader>D", require("telescope.builtin").lsp_type_definitions)
+                vim.keymap.set("n", "<leader>ds", require("telescope.builtin").lsp_document_symbols)
+                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+                vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+                vim.keymap.set("x", "<leader>ca", vim.lsp.buf.code_action)
+                vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
+            end
+        })
+    end
+
+
 
 }
