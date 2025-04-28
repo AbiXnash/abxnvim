@@ -32,4 +32,5 @@ require("lazy").setup({
 		{import = "abx.plugins"}
 	},
 	checker = {enabled = true},
+	change_detection = { notify = false },
 })
