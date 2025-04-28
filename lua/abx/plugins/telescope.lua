@@ -7,6 +7,14 @@ return {
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
     },
 
+    config = function()
+        -- Set the theme to Ivy for Telescope
+        require('telescope').setup {
+            defaults = {
+                layout_strategy = 'bottom_pane',
+            }
+        }
+    end,
     keys = {
         -- Goto ~/.config/nvim files
         { "<leader>vim", function()
@@ -24,5 +32,8 @@ return {
         -- Find git files
         { "<leader><leader>", require('telescope.builtin').git_files },
 
-    }
+        -- Find by current buffers
+        { "<leader>fb",       require('telescope.builtin').buffers },
+    },
+
 }
