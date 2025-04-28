@@ -1,13 +1,13 @@
 -- Disable keymaps
 local disable = {
-	"<left>",
-	"<right>",
-	"<up>",
-	"<down>",
+    "<left>",
+    "<right>",
+    "<up>",
+    "<down>",
 }
 
 for _, key in ipairs(disable) do
-	vim.keymap.set("n", key, '<cmd> echo "Disabled! you **VIM Motions**"<CR>')
+    vim.keymap.set("n", key, '<cmd> echo "Disabled! you **VIM Motions**"<CR>')
 end
 
 -- <Esc> to exit search mode
@@ -28,7 +28,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- Window switch
 vim.keymap.set("n", "<C-h>", "<C-w>h") -- Left
-vim.keymap.set("n", "<C-l>", "<C-w>l") -- Right 
+vim.keymap.set("n", "<C-l>", "<C-w>l") -- Right
 vim.keymap.set("n", "<C-j>", "<C-w>j") -- Down
 vim.keymap.set("n", "<C-k>", "<C-w>k") -- Up
 
