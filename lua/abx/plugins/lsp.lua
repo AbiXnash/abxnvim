@@ -34,23 +34,9 @@ return {
 		},
 	},
 	config = function()
-		local servers = {}
-
-		local lsp_dir = vim.fn.stdpath("config") .. "/lua/abx/lsp"
-		local ok, files = pcall(vim.fn.readdir, lsp_dir)
-
-		if ok then
-			for _, file in ipairs(files) do
-				if file:match("%.lua$") then
-					local server_name = file:gsub("%.lua$", "")
-					servers[server_name] = require("abx.lsp." .. server_name)
-				end
-			end
-		end
 		require("mason-lspconfig").setup_handlers({
 			function(server_name)
-				local opts = servers[server_name] or {}
-				require("lspconfig")[server_name].setup(opts)
+				require("lspconfig")[server_name].setup({})
 			end
 		})
 	end
