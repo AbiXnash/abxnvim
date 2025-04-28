@@ -46,11 +46,11 @@ vim.opt.textwidth = 0
 -- Indentation setup
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
-vim.expandtab = true
+vim.opt.expandtab = true
 vim.opt.softtabstop = 4
 vim.opt.smartindent = true
 
--- Fast update time 
+-- Fast update time
 vim.opt.updatetime = 10
 
 -- NETRW
