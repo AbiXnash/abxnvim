@@ -7,7 +7,7 @@ return {
 
         opts = {
             variant = "main",
-            disable_background = true,
+            disable_background = false,
             palette = {
                 main = {
                     _nc = "#121212",
@@ -29,19 +29,19 @@ return {
         init = function()
             vim.cmd([[colorscheme rose-pine]])
 
-            --  vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE", blend = 100 })   -- Makes the border area transparent
-            --  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#000000" })             -- Matches floating window background
+            vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE", blend = 100 })   -- Makes the border area transparent
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#000000" })             -- Matches floating window background
             vim.api.nvim_set_hl(0, "HarpoonBorder", { bg = "NONE", blend = 100 }) -- Ensures Harpoon border is transparent
             vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE", blend = 100 })  -- Removes background color from window separators
 
             vim.schedule(function()
                 local highlights = {
-                    --  "Normal",
-                    --  "NormalNC",
-                    --  "EndOfBuffer",
-                    --  "SignColumn",
-                    --  "LineNr",
-                    --  "Folded",
+                    "Normal",
+                    "NormalNC",
+                    --                    "EndOfBuffer",
+                    --                    "SignColumn",
+                    --                    "LineNr",
+                    --                    "Folded",
                     "TelescopeNormal",
                     "TelescopeBorder",
                     "TelescopePromptNormal",
@@ -54,7 +54,7 @@ return {
                     "HarpoonBorder",
                     "HarpoonNormal",
                     "HarpoonNormalNC",
-                    --  "NormalFloat",
+                    "NormalFloat",
                 }
                 for _, hl in ipairs(highlights) do
                     vim.cmd("highlight " .. hl .. " guibg=#000000")
