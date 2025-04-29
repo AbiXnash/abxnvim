@@ -8,6 +8,22 @@ return {
         opts = {
             variant = "main",
             disable_background = true,
+            palette = {
+                main = {
+                    _nc = "#121212",
+                    base = "#1a1b26",
+                    surface = "#2c2e34",
+                    --overlay = "#22222e",
+                    --muted = "#5a5c68",
+                    --                   subtle = "#888888",
+                    love = "#d16d92",
+                    gold = "#CA9F7C",
+                    pine = "#5d7e80",
+                    --                    highlight_low = "#292e42",
+                    --                   highlight_med = "#3b4261",
+                    --                   highlight_high = "#565f89",
+                }
+            }
         },
 
         init = function()
