@@ -30,7 +30,8 @@ require("abx.configs.autocmd")
 
 require("lazy").setup({
     spec = {
-        { import = "abx.plugins" }
+        { import = "abx.plugins" },
+        { import = "abx.lsp" }
     },
     checker = { enabled = true },
     change_detection = { notify = false },
