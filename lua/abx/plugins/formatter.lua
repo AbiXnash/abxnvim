@@ -8,13 +8,17 @@ return {
             local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
             nls.setup({
                 sources = {
-                    -- # FORMATTING #
                     fmt.google_java_format.with({ extra_args = { "--aosp" } }),
-                    -- # DIAGNOSTICS #
                     dgn.checkstyle.with({
                         extra_args = {
                             "-c",
                             vim.fn.expand("~/dotfiles/vim-config/google-check.xml"),
+                        },
+                    }),
+                    fmt.prettierd.with({
+                        filetypes = {
+                            "javascript", "typescript", "javascriptreact", "typescriptreact",
+                            "json", "yaml", "html", "css", "scss", "markdown", "graphql",
                         },
                     }),
                 },
