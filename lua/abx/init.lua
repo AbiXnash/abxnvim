@@ -33,6 +33,6 @@ require("lazy").setup({
         { import = "abx.plugins" },
         { import = "abx.lsp" }
     },
-    checker = { enabled = true },
+    checker = { enabled = false },
     change_detection = { notify = false },
 })
