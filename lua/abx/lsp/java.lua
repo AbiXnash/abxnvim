@@ -14,7 +14,6 @@ return {
         "JavaHello/spring-boot.nvim",
         ft = "java",
         dependencies = {
-            "mfussenegger/nvim-java",
             "ibhagwan/fzf-lua", -- optional
         },
     }
