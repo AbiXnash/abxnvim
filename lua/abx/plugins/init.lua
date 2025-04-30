@@ -7,5 +7,8 @@ return {
             { "<leader>U", vim.cmd.UndotreeToggle }
         }
     },
-    { 'brenoprata10/nvim-highlight-colors', opts = {} }
+    { 'brenoprata10/nvim-highlight-colors', opts = {} },
+
+    -- JSON
+    { "b0o/schemastore.nvim" }
 }
