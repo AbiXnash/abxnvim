@@ -18,8 +18,9 @@ return {
                     fmt.prettierd.with({
                         filetypes = {
                             "javascript", "typescript", "javascriptreact", "typescriptreact",
-                            "json", "yaml", "html", "css", "scss", "markdown", "graphql",
+                            "json", "jsonc", "yaml", "html", "css", "scss", "markdown", "graphql",
                         },
+                        extra_args = { "--trailing-comma", "none" }
                     }),
                 },
                 on_attach = function(client, bufnr)
