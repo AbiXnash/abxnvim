@@ -50,8 +50,8 @@ return {
                     configuration = {
                         runtimes = {
                             {
-                                name = "Java 23",
-                                path = "/usr/lib/jvm/java-21-openjdk/bin",
+                                name = "Java 24",
+                                path = "/usr/lib/jvm/default/bin/java",
                                 default = true,
                             }
                         }

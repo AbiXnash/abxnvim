@@ -1,3 +1,5 @@
+print("JSON")
+
 require('lspconfig').jsonls.setup {
     filetypes = { "json", "jsonc" },
     settings = {
