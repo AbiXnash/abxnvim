@@ -10,5 +10,9 @@ return {
     { 'brenoprata10/nvim-highlight-colors', opts = {} },
 
     -- JSON
-    { "b0o/schemastore.nvim" }
+    { "b0o/schemastore.nvim" },
+
+    -- Git
+    { "tpope/vim-fugitive" },
+    { "lewis6991/gitsigns.nvim",            opts = {} }
 }
