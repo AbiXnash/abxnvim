@@ -36,10 +36,13 @@ vim.keymap.set("n", "<C-k>", "<C-w>k") -- Up
 vim.keymap.set("v", "<C-c>", '"+y')
 
 -- File Tree
-vim.keymap.set("n", "<leader>pv", "<cmd>:Explore<CR>")
+vim.keymap.set("n", "<leader>pv", "<cmd>Explore<CR>")
 vim.keymap.set("n", "<C-up>", "<cmd>Sexplore<CR>")
 vim.keymap.set("n", "<C-down>", "<cmd>Hexplore<CR>")
 vim.keymap.set("n", "<C-left>", "<cmd>Vexplore<CR>")
 
 -- Tmux
 vim.keymap.set("n", "<leader>t", "<cmd>!tmux neww ~/dotfiles/scripts/tmux-sessionizer.sh<CR>")
+
+-- Git
+vim.keymap.set("n", "<leader>g", "<cmd>G<CR>")
