@@ -6,7 +6,7 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
 -- Cursor
-vim.opt.guicursor = "n-v-c:block,i:hor20"
+vim.opt.guicursor = ""
 
 -- Line Number
 vim.opt.number = true
