@@ -12,7 +12,7 @@ return {
                     dgn.checkstyle.with({
                         extra_args = {
                             "-c",
-                            vim.fn.expand("~/dotfiles/vim-config/google-check.xml"),
+                            vim.fn.expand("~/.config/nvim/after/formatter/google-check.xml"),
                         },
                     }),
                     fmt.prettierd.with({
