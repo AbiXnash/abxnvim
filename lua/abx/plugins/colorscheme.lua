@@ -7,7 +7,7 @@ return {
 
         opts = {
             variant = "main",
-            disable_background = false,
+            disable_background = true,
             palette = {
                 main = {
                     _nc = "#121212",

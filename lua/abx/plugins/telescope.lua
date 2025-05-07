@@ -45,7 +45,7 @@ return {
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
             callback = function()
-                vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions)
+                vim.keymap.set("n", "gd", [[:lua pcall(vim.lsp.buf.definition)<CR>]], { noremap = true, silent = true })
                 vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references)
                 vim.keymap.set("n", "<leader>D", require("telescope.builtin").lsp_type_definitions)
                 vim.keymap.set("n", "<leader>ds", require("telescope.builtin").lsp_document_symbols)
