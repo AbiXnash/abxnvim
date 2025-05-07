@@ -30,11 +30,11 @@ return {
 
             vim.schedule(function()
                 local highlights = {
-                    "Normal",
+                    --[[ "Normal",
                     "NormalNC",
-                    -- "SignColumn",
-                    -- "LineNr",
-                    -- "Folded",
+                    "SignColumn",
+                    "LineNr",
+                    "Folded", ]]
                     "TelescopeNormal",
                     "TelescopeBorder",
                     "TelescopePromptNormal",
