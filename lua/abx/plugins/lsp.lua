@@ -1,6 +1,6 @@
 return {
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         build = ":MasonUpdate",
         opts = {
             registries = {
@@ -22,7 +22,7 @@ return {
         }
     },
     {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         opts = {
             ensure_installed = { "lua_ls" },
             automatic_enable = true,
@@ -37,6 +37,7 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
+        dependencies = { "j-hui/fidget.nvim", opts = {} },
         config = function()
             local capabilities = require("blink.cmp").get_lsp_capabilities()
             local lspconfig = require("lspconfig")
@@ -51,7 +52,7 @@ return {
                             runtimes = {
                                 {
                                     name = "Java 24",
-                                    path = "/usr/lib/jvm/default/",
+                                    path = "/usr/lib/jvm/java-24-openjdk/",
                                     default = true,
                                 }
                             }
