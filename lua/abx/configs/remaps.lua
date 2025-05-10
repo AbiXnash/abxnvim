@@ -14,7 +14,7 @@ end
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Remap <Esc>
-vim.keymap.set("i", "jk", "<Esc>")
+vim.keymap.set("i", "ht", "<Esc>")
 
 -- Move lines
 vim.keymap.set("v", ",", ":m '>+1<CR>gv=gv")
