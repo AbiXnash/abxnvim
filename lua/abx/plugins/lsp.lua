@@ -39,41 +39,16 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = { "j-hui/fidget.nvim", opts = {} },
         config = function()
-            local capabilities = require("blink.cmp").get_lsp_capabilities()
-            local lspconfig = require("lspconfig")
-            local mason_lspconfig = require("mason-lspconfig")
+            local lspconfig = require('lspconfig')
+            local servers = require("mason-lspconfig").get_installed_servers()
 
             -- Specific LSPs setup
             lspconfig["jdtls"].setup({
                 capabilities = capabilities,
-                settings = {
-                    java = {
-                        configuration = {
-                            runtimes = {
-                                {
-                                    name = "Java 24",
-                                    path = "/usr/lib/jvm/java-24-openjdk/",
-                                    default = true,
-                                }
-                            }
-                        }
-                    }
-                }
             })
-
-            lspconfig.svelte.setup {
-                filetypes = { "svelte" },
-                on_attach = function(client, bufnr)
-                    if client.name == 'svelte' then
-                        vim.api.nvim_create_autocmd("BufWritePost", {
-                            pattern = { "*.js", "*.ts", "*.svelte" },
-                            callback = function(ctx)
-                                client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-                            end,
-                        })
-                    end
-                end
-            }
+            for _, server in ipairs(servers) do
+                lspconfig[server].setup {}
+            end
         end
     }
 }

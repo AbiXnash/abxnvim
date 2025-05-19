@@ -21,13 +21,10 @@ return {
         },
     },
 
+    { 'jinh0/eyeliner.nvim',                opts = { highlight_on_key = true, } },
+
     -- Git
-    {
-        "lewis6991/gitsigns.nvim",
-        opts = {
-            current_line_blame = true,
-        }
-    },
+    { "lewis6991/gitsigns.nvim", },
     { "tpope/vim-fugitive" },
 
     -- CSS
@@ -35,7 +32,6 @@ return {
 
     -- JSON
     { "b0o/schemastore.nvim" },
-
 
     -- Presentaion
     { 'tjdevries/present.nvim' },

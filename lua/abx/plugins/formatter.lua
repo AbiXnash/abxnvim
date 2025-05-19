@@ -18,7 +18,7 @@ return {
                     fmt.prettierd.with({
                         filetypes = {
                             "javascript", "typescript", "javascriptreact", "typescriptreact",
-                            "json", "jsonc", "yaml", "html", "css", "scss", "markdown", "graphql",
+                            "json", "jsonc", "yaml", "css", "scss", "markdown", "graphql",
                         },
                         extra_args = { "--trailing-comma", "none" }
                     }),
