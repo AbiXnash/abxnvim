@@ -14,15 +14,8 @@ return {
             file_ignore_patterns = { "node_modules", ".git/" },
         })
 
-        -- Goto ~/.config/nvim files
-        vim.keymap.set("n", "<leader>vim", function()
-            require('telescope.builtin').find_files {
-                cwd = vim.fn.stdpath("config")
-            }
-        end)
-
         -- Find Files from parent directory
-        vim.keymap.set("n", "<leader>fd", function()
+        vim.keymap.set("n", "<leader><leader>", function()
             require('telescope.builtin').find_files()
         end)
 
@@ -32,7 +25,7 @@ return {
         end)
 
         -- Find git files
-        vim.keymap.set("n", "<leader><leader>", function()
+        vim.keymap.set("n", "<leader>fg", function()
             require('telescope.builtin').git_files()
         end)
 
