@@ -47,8 +47,9 @@ vim.opt.textwidth = 0
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt.softtabstop = 4
 vim.opt.smartindent = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
 
 -- Fast update time
 vim.opt.updatetime = 10

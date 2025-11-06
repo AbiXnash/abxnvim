@@ -7,7 +7,7 @@ return {
             modules = {},
             ignore_install = {},
 
-            ensure_installed = { "lua", "vimdoc", "java" },
+            ensure_installed = { "lua", "vimdoc", "java", "jsdoc" },
 
             sync_install = false,
             auto_install = true,
