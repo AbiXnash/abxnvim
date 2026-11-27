@@ -8,6 +8,9 @@
   <img src="https://img.shields.io/badge/Web%20Dev-Svelte%20%7C%20React%20%7C%20JSON-orange?style=for-the-badge" />
 </p>
 
+> **Older config, kept for reference.** My current Neovim setup is [AbiXnash/nvim](https://github.com/AbiXnash/nvim)
+> (Neovim 0.12, lazy.nvim, the [Hell Pine](https://github.com/abxengg/hell-pine.nvim) colorscheme).
+
 ---
 
 🚀 **abxnvim** is a fast, minimalist, and full-featured Neovim configuration tailored for Java Spring Boot, modern web development (React, Svelte), and productivity-first workflows. Built modularly using **Lua** and powered by **Lazy.nvim** for efficient plugin management.
@@ -17,18 +20,20 @@
 ## 🧩 Features
 
 * ⚡ Lazy-loaded plugin architecture with [Lazy.nvim](https://github.com/folke/lazy.nvim)
-* 🎨 Custom colorscheme `hell-pine` — a personalized fork of *rose-pine*
+* 🎨 *rose-pine* with a custom, darker palette and transparent floats: the start of what became [Hell Pine](https://github.com/abxengg/hell-pine.nvim)
 * 🧠 LSP support for:
 
   * Java (with Spring Boot optimizations via `jdtls`)
   * Web: React, Svelte, JSON
-* 🛠️ Formatters and linters via `none-ls`, `nvim-lint`, and `mason-null-ls`
+* 🛠️ Formatters and linters via `none-ls` and `mason-null-ls`, plus SonarLint for Java (`sonarlint.nvim`)
+* ✍️ Completion with `blink.cmp`; diagnostics with `trouble.nvim` and `tiny-inline-diagnostic`
+* 🌱 Spring Boot support with `spring-boot.nvim`
 * 🔍 Fuzzy finding with `telescope.nvim`
 * 🌲 Enhanced syntax & structure highlighting via `nvim-treesitter`
 * 💬 Context-aware commenting, TODO tracking, and `ts-autotag`
 * ⏪ Persistent undo with `undotree`
 * 📁 JSON schema integration with `SchemaStore.nvim`
-* 🧭 Navigation and quick file access with `harpoon`
+* 🧭 Fuzzy finding also through `fzf-lua` (Harpoon is in the config but commented out)
 * 🔧 Git tooling with `vim-fugitive` and `gitsigns.nvim`
 * 🔑 Awesome remaps for an ergonomic workflow
 
@@ -39,10 +44,12 @@
 ```
 abxnvim/
 ├── init.lua                        -- Entry point
-├── lazy-lock.json                  -- Lockfile for plugin versions
-├── after/ftplugin/json.lua         -- Filetype-specific configs
+├── sonarlint.lua                   -- SonarLint setup
+├── after/
+│   ├── formatter/google-check.xml  -- Checkstyle rules for Java
+│   └── ftplugin/                   -- java.lua, json.lua, svelte.lua
 └── lua/abx/
-    ├── init.lua                    -- Bootstrap logic
+    ├── init.lua                    -- Bootstrap logic (lazy.nvim)
     ├── configs/
     │   ├── autocmd.lua
     │   ├── options.lua
@@ -55,9 +62,12 @@ abxnvim/
         ├── comments.lua
         ├── formatter.lua
         ├── init.lua
+        ├── inline-diagnotics.lua
         ├── lsp.lua
+        ├── sonarlint.lua
         ├── telescope.lua
-        └── treesitter.lua
+        ├── treesitter.lua
+        └── trouble.lua
 ```
 
 ---
@@ -132,11 +142,11 @@ nvim
 
 | Stack                   | Plugins & Config                                |
 | ----------------------- | ----------------------------------------------- |
-| **Java (Spring Boot)**  | `jdtls`, `lspconfig`, `none-ls`, `mason.nvim`   |
+| **Java (Spring Boot)**  | `jdtls`, `spring-boot.nvim`, `sonarlint.nvim`, `none-ls`, `mason.nvim` |
 | **React, Svelte, JSON** | Full LSP, formatting, linting                   |
 | **Git**                 | `vim-fugitive`, `gitsigns.nvim`                 |
-| **Search & Navigation** | `telescope.nvim`, `harpoon`, `plenary.nvim`     |
-| **UI/UX Enhancements**  | `hell-pine`, `highlight-colors`, remaps         |
+| **Search & Navigation** | `telescope.nvim`, `fzf-lua`, `plenary.nvim`     |
+| **UI/UX Enhancements**  | `rose-pine` (custom palette), `fidget`, remaps  |
 | **Development Aids**    | `todo-comments`, `undotree`, `SchemaStore.nvim` |
 
 ---
@@ -155,7 +165,7 @@ nvim
 
 Developed and maintained by [**Abinash**](https://github.com/AbiXnash)
 Java Developer | Linux Power User | Neovim Enthusiast
-🎯 Incoming Java Developer @ Mindgate Solutions | July 2025
+🎯 Java Developer @ Mindgate Solutions
 🔗 [GitHub](https://github.com/AbiXnash) • [LinkedIn](https://www.linkedin.com/in/abinash-selvarasu)
 
 ---
